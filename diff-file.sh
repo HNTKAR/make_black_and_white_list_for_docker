@@ -14,6 +14,7 @@ curl -OL http://ftp.apnic.net/stats/apnic/delegated-apnic-latest
 
 cat delegated-apnic-latest | grep JP |grep ipv4 >tmp
 sed -i -e "s*|256*/24*" -e "s*|512*/23*" -e "s*|1024*/22*" -e "s*|2048*/21*" -e "s*|4096*/20*" -e "s*|8192*/19*" -e "s*|16384*/18*" -e "s*|32768*/17*" -e "s*|65536*/16*"  -e "s*|131072*/15*" -e "s*|262144*/14*" -e "s*|524288*/13*" -e "s*|1048576*/12*" -e "s*|2097152*/11*" -e "s*|4194304*/10*" -e "s*|8388608*/9*" -e "s*|16777216*/8*" tmp
+#cat tmp |grep -v 256 |grep -v 512 |grep -v 1024 |grep -v 2048 |grep -v 4096 |grep -v 8192 |grep -v 16384 |grep -v 32768 |grep -v 65536 |grep -v 131072 |grep -v 262144 |grep -v 524288 |grep -v 1048576 |grep -v 2097152 |grep -v 4194304 |grep -v 8388608| grep -v 16777216 |less
 cut -f 4 -d "|" tmp > japan-list
 echo 192.168.0.0/16 >> japan-list
 echo 172.16.0.0/12 >> japan-list
