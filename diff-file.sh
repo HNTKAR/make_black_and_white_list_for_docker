@@ -39,8 +39,11 @@ cat $data_folder/japan-list | xargs -I {} ipset add white-list "{}"
 #from $mail_log_file
 `:`>>$data_folder/black_list_log
 chmod 700 $data_folder/black_list_log
+
 cat $mail_log_file | grep  SASL|sed  -e 's/.*\[//g' -e 's/\].*'//g >>$data_folder/black_list_log
-cat $data_folder/black_list_log | awk  'a[$0]++ == 10'>$data_folder/enemy_list
+cat $mail_log_file | grep  hostname|cut -f14 -d\  |sed s/://g>>$data_folder/black_list_log
+
+cat $data_folder/black_list_log | awk  'a[$0]++ == 4'>$data_folder/enemy_list
 chmod 700 $data_folder/enemy_list
 
 cat $mail_log_file >>$mail_log_file`date +"%y%m%d"`
